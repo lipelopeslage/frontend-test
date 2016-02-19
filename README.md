@@ -35,7 +35,7 @@ Para executar a task
 npm run startNodemon
 ```
 
-Escolha qual le agradar mais, ou execute manualmente a aplicação:
+Escolha qual lhe agradar mais, ou execute manualmente a aplicação:
 ```sh
 node app.js
 ```
