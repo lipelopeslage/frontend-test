@@ -1,0 +1,78 @@
+@import 'utils/reset.styl'
+@import 'utils/utils.styl'
+
+body
+	.container
+		block-relative()
+		max-width 1200px
+		margin 0 auto
+	header
+		block-relative()
+		dimensions(100%, 69px)
+		margin 0 auto
+		border-bottom 1px solid #f5f5f5
+		.container
+			clear both
+			padding-top 10px
+			h1
+				block-relative()
+				dimensions(81px, 52px, image('sprite.png'))
+				float left
+				text-indent -99999px
+			button
+				block-relative()
+				set_font(Arial, 16px, 20px, #888)
+				margin-top 10px
+				padding 5px 10px
+				float right
+				border 1px solid #ccc
+				background-color #fff
+				
+	footer
+		block-relative()
+		dimensions(100%, auto, #ebebeb)
+		min-height 32px
+		padding-bottom 10px
+		.container
+			.content
+				set_font(Arial, 12px, 15px, gray, left)
+				padding 12px 0 0 66px
+				border-top 1px solid #005da4
+				a
+					text-decoration none
+					color #005da4
+				span
+					display inline-block
+					margin 0 10px
+					color #d5d5d5
+					
+				strong
+					relative()
+					font-weight normal
+					&:before
+						block-absolute()
+						dimensions(51px, 29px, image('sprite.png') -94px -10px)
+						top -7px
+						left -66px
+						content ""
+
+
+@media all and (max-width: 767px)
+	.container
+		width 100%
+		
+@media all and (min-width: 768px) and (max-width: 991px)
+	.container
+		width 85%
+		
+@media all and (min-width: 992px) and (max-width: 1119px)
+	.container
+		width 90%
+		
+@media all and (min-width: 1200px)
+	.container 
+		max-width 1200px
+	
+	
+			
+@import 'chat.styl'
