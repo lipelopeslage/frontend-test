@@ -122,16 +122,22 @@ table {
   border-spacing: 0;
 }
 ::-webkit-input-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }
 :-moz-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }
 ::-moz-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }
 :-ms-input-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
+}
+body #chatbox-holder {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 26px;
 }
 body .container {
   display: block;
@@ -155,15 +161,16 @@ body header .container {
 body header .container h1 {
   display: block;
   position: relative;
+  float: left;
   width: 81px;
   height: 52px;
   background: url("../res/img/sprite.png");
-  float: left;
   text-indent: -99999px;
 }
 body header .container button {
   display: block;
   position: relative;
+  float: right;
   font-family: Arial;
   font-size: 16px;
   line-height: 20px;
@@ -172,7 +179,6 @@ body header .container button {
   text-transform: none;
   margin-top: 10px;
   padding: 5px 10px;
-  float: right;
   border: 1px solid #ccc;
   background-color: #fff;
 }
@@ -219,6 +225,14 @@ body footer .container .content strong:before {
   content: "";
 }
 @media all and (max-width: 767px) {
+  #chatbox-holder {
+    position: fixed !important;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: auto !important;
+    right: 0 !important;
+  }
   .container {
     width: 100%;
   }
@@ -238,7 +252,591 @@ body footer .container .content strong:before {
     max-width: 1200px;
   }
 }
+#chatbox {
+  display: block;
+  position: relative;
+  visibility: hidden;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px #999;
+  max-width: 600px;
+}
+#chatbox .header {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 36px;
+  background: #005da4;
+  clear: both;
+}
+#chatbox .header .title {
+  display: block;
+  position: relative;
+  float: left;
+  font-family: Arial;
+  font-size: 16px;
+  line-height: 16px;
+  color: #fff;
+  text-align: left;
+  text-transform: none;
+  padding: 10px 13px;
+  font-style: italic;
+}
+#chatbox .header .controls {
+  display: block;
+  position: relative;
+  float: right;
+  padding: 12px 12px 0 0;
+}
+#chatbox .header .controls button {
+  display: block;
+  position: relative;
+  float: left;
+  width: 18px;
+  height: 18px;
+  background: #005da4 url("../res/img/sprite.png");
+  opacity: 0.5;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  -ms-transition: opacity 0.1s linear;
+  -o-transition: opacity 0.1s linear;
+  -webkit-transition: opacity 0.1s linear;
+  -moz-transition: opacity 0.1s linear;
+  transition: opacity 0.1s linear;
+  margin-left: 15px;
+  text-indent: -9999px;
+  border: 0;
+}
+#chatbox .header .controls button:hover {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+}
+#chatbox .header .controls button.min {
+  background-position: -167px -15px;
+}
+#chatbox .header .controls button.res {
+  background-position: -198px -15px;
+}
+#chatbox .header .controls button.cl {
+  background-position: -231px -17px;
+}
+#chatbox .body {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  clear: both;
+}
+#chatbox .body .history {
+  display: block;
+  position: absolute;
+  padding: 15px;
+  left: 0;
+  bottom: 0;
+}
+#chatbox .body .history .input {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 16px;
+}
+#chatbox .body .history .input:after {
+  display: block;
+  position: relative;
+  width: 0;
+  height: 0;
+  background: transparent;
+  clear: both;
+  content: "";
+}
+#chatbox .body .history .input .thumb {
+  display: block;
+  position: relative;
+  vertical-align: top;
+}
+#chatbox .body .history .input .thumb img {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+#chatbox .body .history .input .message {
+  display: block;
+  position: relative;
+  font-family: Arial;
+  font-size: 16px;
+  line-height: 16px;
+  color: #666;
+  text-align: left;
+  text-transform: none;
+  background-color: #ddd;
+  font-style: italic;
+}
+#chatbox .body .history .input .message:before {
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: transparent;
+  top: 8px;
+  content: "";
+}
+#chatbox .body .history .input .message .content {
+  display: block;
+  padding: 10px 9px 9px 9px;
+}
+#chatbox .body .history .input .message .from {
+  display: block;
+  position: absolute;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 12px;
+  color: #666;
+  text-align: none;
+  text-transform: none;
+  bottom: 7px;
+}
+#chatbox .body .history .input .message .from .time {
+  display: block;
+  position: relative;
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: auto;
+}
+#chatbox .body .history .input .message .text {
+  display: block;
+  position: relative;
+  padding-bottom: 26px;
+  width: 58.6%;
+}
+#chatbox .body .history .input .message .status {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url("../res/img/sprite.png") -290px -16px;
+  bottom: 0;
+  left: 4px;
+}
+#chatbox .body .history .input.clerk .thumb {
+  float: left;
+}
+#chatbox .body .history .input.clerk .message {
+  float: left;
+}
+#chatbox .body .history .input.clerk .message .from {
+  left: 10px;
+}
+#chatbox .body .history .input.clerk .message .from strong {
+  font-weight: bold;
+}
+#chatbox .body .history .input.clerk .message .text {
+  float: right;
+}
+#chatbox .body .history .input.clerk .message .status {
+  display: none;
+}
+#chatbox .body .history .input.clerk .message:before {
+  left: -7px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid #ddd;
+}
+#chatbox .body .history .input.client {
+  text-align: right;
+}
+#chatbox .body .history .input.client .thumb {
+  float: right;
+}
+#chatbox .body .history .input.client .message {
+  float: right;
+}
+#chatbox .body .history .input.client .message .from {
+  right: 10px;
+  text-align: right;
+}
+#chatbox .body .history .input.client .message .text {
+  float: left;
+}
+#chatbox .body .history .input.client .message:before {
+  right: -7px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #ddd;
+}
+#chatbox .footer {
+  display: block;
+  position: relative;
+  padding: 15px;
+  clear: both;
+}
+#chatbox .footer form {
+  display: block;
+  position: relative;
+}
+#chatbox .footer form textarea {
+  display: block;
+  position: relative;
+  width: auto;
+  height: 54px;
+  background: #f1f1f1;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: auto;
+  color: #666;
+  text-align: none;
+  text-transform: none;
+  box-shadow: inset 0 0 10px #d5d5d5;
+  -ms-transition: box-shadow 0.15s linear;
+  -o-transition: box-shadow 0.15s linear;
+  -webkit-transition: box-shadow 0.15s linear;
+  -moz-transition: box-shadow 0.15s linear;
+  transition: box-shadow 0.15s linear;
+  padding: 7px 10px;
+  border: 1px solid #dedede;
+  font-style: italic;
+  resize: none;
+}
+#chatbox .footer form textarea:focus {
+  box-shadow: inset 0 0 20px #78a7ca;
+  border: 1px solid #bacedd;
+  outline: 0 none;
+}
+#chatbox .footer form button {
+  display: block;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: url("../res/img/sprite.png");
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  visibility: hidden;
+  right: 1px;
+  top: 1px;
+  border: 0;
+}
+#chatbox .footer form button[type="submit"] {
+  background-color: #4789bb;
+  background-position: -312px -8px;
+  text-indent: -9999px;
+}
+#chatbox .footer form button[type="submit"]:hover {
+  background-color: #256fa6;
+  background-position: -312px -12px;
+}
+#chatbox .footer form button[type="reset"] {
+  top: 35px;
+  background-color: #dedede;
+  background-position: -340px -7px;
+  text-indent: -9999px;
+}
+#chatbox .footer form button[type="reset"]:hover {
+  background-color: #cecece;
+  background-position: -340px -10px;
+}
+#chatbox .footer form.writing button {
+  display: block;
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  visibility: visible;
+}
+#chatbox button {
+  cursor: pointer;
+}
+#chatbox:focus {
+  outline: none 0;
+}
+@media all and (max-width: 767px) {
+  #chatbox .header .controls button.min,
+  #chatbox .header .controls button.res {
+    display: none;
+  }
+  #chatbox .body .input .thumb {
+    width: 20.68%;
+  }
+  #chatbox .body .input .message {
+    width: 75.86%;
+    margin-left: 3.44%;
+  }
+  #chatbox .body .input .message .content {
+    padding: 9px 9px 4px 7px !important;
+  }
+  #chatbox .body .input .message .from {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+  }
+  #chatbox .body .input .message .text {
+    width: 100% !important;
+    padding-bottom: 11px !important;
+    float: none !important;
+  }
+  #chatbox .body .input.client .message {
+    margin-left: 0;
+    margin-right: 3.44%;
+  }
+}
+@media all and (min-width: 768px) {
+  #chatbox {
+    width: 600px;
+  }
+  #chatbox .body {
+    min-height: 409px;
+  }
+  #chatbox .body .input .thumb {
+    width: 16.14%;
+  }
+  #chatbox .body .input .message {
+    width: 74.73%;
+    margin-left: 2.8%;
+  }
+  #chatbox .body .input.client .message {
+    margin-left: 0;
+    margin-right: 2.8%;
+  }
+}
 
+#chatbox {
+  visibility: hidden;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px #999;
+  max-width: 600px;
+}
+#chatbox .header {
+  clear: both;
+}
+#chatbox .header .title {
+  padding: 10px 13px;
+  font-style: italic;
+}
+#chatbox .header .controls {
+  padding: 12px 12px 0 0;
+}
+#chatbox .header .controls button {
+  margin-left: 15px;
+  text-indent: -9999px;
+  border: 0;
+}
+#chatbox .header .controls button.min {
+  background-position: -167px -15px;
+}
+#chatbox .header .controls button.res {
+  background-position: -198px -15px;
+}
+#chatbox .header .controls button.cl {
+  background-position: -231px -17px;
+}
+#chatbox .body {
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  clear: both;
+}
+#chatbox .body .history {
+  padding: 15px;
+  left: 0;
+  bottom: 0;
+}
+#chatbox .body .history .input {
+  width: 100%;
+  margin-top: 16px;
+}
+#chatbox .body .history .input:after {
+  clear: both;
+  content: "";
+}
+#chatbox .body .history .input .thumb {
+  vertical-align: top;
+}
+#chatbox .body .history .input .thumb img {
+  width: 100%;
+}
+#chatbox .body .history .input .message {
+  background-color: #ddd;
+  font-style: italic;
+}
+#chatbox .body .history .input .message:before {
+  top: 8px;
+  content: "";
+}
+#chatbox .body .history .input .message .content {
+  padding: 10px 9px 9px 9px;
+}
+#chatbox .body .history .input .message .from {
+  bottom: 7px;
+}
+#chatbox .body .history .input .message .from .time {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: auto;
+}
+#chatbox .body .history .input .message .text {
+  padding-bottom: 26px;
+  width: 58.6%;
+}
+#chatbox .body .history .input .message .status {
+  bottom: 0;
+  left: 4px;
+}
+#chatbox .body .history .input.clerk .thumb {
+  float: left;
+}
+#chatbox .body .history .input.clerk .message {
+  float: left;
+}
+#chatbox .body .history .input.clerk .message .from {
+  left: 10px;
+}
+#chatbox .body .history .input.clerk .message .from strong {
+  font-weight: bold;
+}
+#chatbox .body .history .input.clerk .message .text {
+  float: right;
+}
+#chatbox .body .history .input.clerk .message:before {
+  left: -7px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid #ddd;
+}
+#chatbox .body .history .input.client {
+  text-align: right;
+}
+#chatbox .body .history .input.client .thumb {
+  float: right;
+}
+#chatbox .body .history .input.client .message {
+  float: right;
+}
+#chatbox .body .history .input.client .message .from {
+  right: 10px;
+  text-align: right;
+}
+#chatbox .body .history .input.client .message .text {
+  float: left;
+}
+#chatbox .body .history .input.client .message:before {
+  right: -7px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #ddd;
+}
+#chatbox .footer {
+  padding: 15px;
+  clear: both;
+}
+#chatbox .footer form textarea {
+  padding: 7px 10px;
+  border: 1px solid #dedede;
+  font-style: italic;
+  resize: none;
+}
+#chatbox .footer form textarea:focus {
+  border: 1px solid #bacedd;
+  outline: 0 none;
+}
+#chatbox .footer form button {
+  visibility: hidden;
+  right: 1px;
+  top: 1px;
+  border: 0;
+}
+#chatbox .footer form button[type="submit"] {
+  background-color: #4789bb;
+  background-position: -312px -8px;
+  text-indent: -9999px;
+}
+#chatbox .footer form button[type="submit"]:hover {
+  background-color: #256fa6;
+  background-position: -312px -12px;
+}
+#chatbox .footer form button[type="reset"] {
+  top: 35px;
+  background-color: #dedede;
+  background-position: -340px -7px;
+  text-indent: -9999px;
+}
+#chatbox .footer form button[type="reset"]:hover {
+  background-color: #cecece;
+  background-position: -340px -10px;
+}
+#chatbox .footer form.writing button {
+  visibility: visible;
+}
+#chatbox button {
+  cursor: pointer;
+}
+#chatbox:focus {
+  outline: none 0;
+}
+/*
+@media all and (max-width: 620px)
+	#chatbox .body .input .message
+		.text 
+			width 100%
+			float none !important
+		.from
+			block-relative()
+			float none !important
+			left auto !important
+			right auto !important
+			bottom auto !important
+			width 100%
+			*/
+/*@media all and (min-width: 768px)
+	#chatbox
+		.body .input 
+			.thumb
+				float left
+			.message
+				float right
+*/
+@media all and (max-width: 767px) {
+  #chatbox .body .input .thumb {
+    width: 20.68%;
+  }
+  #chatbox .body .input .message {
+    width: 75.86%;
+    margin-left: 3.44%;
+  }
+  #chatbox .body .input .message .content {
+    padding: 9px 9px 4px 7px !important;
+  }
+  #chatbox .body .input .message .from {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+  }
+  #chatbox .body .input .message .text {
+    width: 100% !important;
+    padding-bottom: 11px !important;
+    float: none !important;
+  }
+  #chatbox .body .input.client .message {
+    margin-left: 0;
+    margin-right: 3.44%;
+  }
+}
+@media all and (min-width: 768px) {
+  #chatbox {
+    width: 600px;
+  }
+  #chatbox .body {
+    min-height: 409px;
+  }
+  #chatbox .body .input .thumb {
+    width: 16.14%;
+  }
+  #chatbox .body .input .message {
+    width: 74.73%;
+    margin-left: 2.8%;
+  }
+  #chatbox .body .input.client .message {
+    margin-left: 0;
+    margin-right: 2.8%;
+  }
+}
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -370,14 +968,14 @@ table {
 }
 
 ::-webkit-input-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }
 :-moz-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }
 ::-moz-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }
 :-ms-input-placeholder {
-  color: #f00 !important;
+  color: #ababab !important;
 }

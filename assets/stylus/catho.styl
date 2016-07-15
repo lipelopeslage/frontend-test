@@ -1,7 +1,15 @@
 @import 'utils/reset.styl'
 @import 'utils/utils.styl'
 
+$blue = #005da4
+$sprite = image('sprite.png')
+
 body
+	#chatbox-holder
+		block-absolute()
+		bottom 0
+		right 26px
+		
 	.container
 		block-relative()
 		max-width 1200px
@@ -15,16 +23,14 @@ body
 			clear both
 			padding-top 10px
 			h1
-				block-relative()
-				dimensions(81px, 52px, image('sprite.png'))
-				float left
+				block-relative-left()
+				dimensions(81px, 52px, $sprite)
 				text-indent -99999px
 			button
-				block-relative()
+				block-relative-right()
 				set_font(Arial, 16px, 20px, #888)
 				margin-top 10px
 				padding 5px 10px
-				float right
 				border 1px solid #ccc
 				background-color #fff
 				
@@ -37,10 +43,10 @@ body
 			.content
 				set_font(Arial, 12px, 15px, gray, left)
 				padding 12px 0 0 66px
-				border-top 1px solid #005da4
+				border-top 1px solid $blue
 				a
 					text-decoration none
-					color #005da4
+					color $blue
 				span
 					display inline-block
 					margin 0 10px
@@ -57,7 +63,15 @@ body
 						content ""
 
 
+
 @media all and (max-width: 767px)
+	#chatbox-holder
+		position fixed !important
+		width 100%
+		height 100%
+		top 0
+		bottom auto !important
+		right 0 !important
 	.container
 		width 100%
 		

@@ -1,1 +1,259 @@
-// small
+#chatbox
+	block-relative()
+	visibility hidden
+	background-color #fff
+	box-shadow 0px 0px 15px #999
+	max-width 600px
+	
+	.header
+		block-relative()
+		dimensions(100%, 36px, $blue)
+		clear both
+		.title
+			block-relative-left()
+			set_font(Arial, 16px, 16px, #fff, left)
+			padding 10px 13px
+			font-style italic
+		.controls
+			block-relative-right()
+			padding 12px 12px 0 0
+			button
+				block-relative-left()
+				dimensions(18px, 18px, $blue $sprite)
+				opacity(.5)
+				transition(opacity, .1s, linear)
+				margin-left 15px
+				text-indent -9999px
+				border 0
+				&:hover
+					opacity(1)
+				&.min
+					background-position -167px -15px
+				&.res
+					background-position -198px -15px
+				&.cl
+					background-position -231px -17px
+	
+	.body
+		block-relative()
+		overflow hidden
+		border-bottom 1px solid #ddd
+		clear both
+		.history
+			block-absolute()
+			padding 15px
+			left 0
+			bottom 0
+			.input
+				block-relative()
+				width 100%
+				margin-top 16px
+				&:after
+					block-relative()
+					dimensions(0,0)
+					clear both
+					content ""
+				.thumb
+					block-relative()
+					vertical-align top
+					img
+						block-relative()
+						width 100%
+				.message
+					block-relative()
+					set_font(Arial, 16px, 16px, #666, left)
+					background-color #ddd
+					font-style italic
+					&:before
+						block-absolute()
+						dimensions(0,0)
+						top 8px
+						content ""
+					
+					.content
+						block()
+						padding 10px 9px 9px 9px
+					
+					.from
+						block-absolute()
+						set_font(Arial, 14px, 12px, #666)
+						bottom 7px
+						.time
+							block-relative()
+							margin-top 4px
+							font-size 11px
+							line-height auto
+					.text
+						block-relative()
+						padding-bottom 26px
+						width 58.6%
+					.status
+						block-absolute()
+						dimensions(20px, 20px, $sprite -290px -16px)
+						bottom 0
+						left 4px
+				&.clerk
+					.thumb
+						float left
+					.message
+						float left
+						.from
+							left 10px
+							strong
+								font-weight bold
+						.text
+							float right
+						.status
+							none()
+						&:before
+							left -7px
+							border-top 7px solid transparent
+							border-bottom 7px solid transparent
+							border-right 7px solid #ddd
+			
+				&.client
+					text-align right
+					.thumb
+						float right
+					.message
+						float right
+						.from
+							right 10px
+							text-align right
+						.text
+							float left
+						&:before
+							right -7px
+							border-top 7px solid transparent
+							border-bottom 7px solid transparent
+							border-left 7px solid #ddd
+						
+					
+	
+	.footer
+		block-relative()
+		padding 15px
+		clear both
+		form
+			block-relative()
+			textarea
+				block-relative()
+				dimensions(auto, 54px, #f1f1f1)
+				set_font(Arial, 14px, auto, #666666)
+				boxshadow(0, 0, 10px, #d5d5d5, true)
+				transition(box-shadow, .15s, linear)
+				padding 7px 10px
+				border 1px solid #dedede
+				font-style italic
+				resize none
+				&:focus
+					boxshadow(0, 0, 20px, #78a7ca, true)
+					border 1px solid #bacedd
+					outline 0 none
+			
+			button
+				block-absolute()
+				dimensions(34px, 34px, $sprite)
+				transition(all, .15s, linear)
+				opacity(0)
+				visibility hidden				
+				right 1px
+				top 1px
+				border 0
+				&[type="submit"]
+					background-color #4789bb
+					background-position -312px -8px
+					text-indent -9999px
+					&:hover
+						background-color #256fa6
+						background-position -312px -12px
+				&[type="reset"]
+					top 35px
+					background-color #dedede
+					background-position -340px -7px
+					text-indent -9999px
+					&:hover
+						background-color #cecece
+						background-position -340px -10px
+			&.writing
+				button
+					block()
+					opacity(1)
+					visibility visible
+
+	button
+		cursor pointer
+	&:focus
+		outline none 0
+
+/*
+@media all and (max-width: 620px)
+	#chatbox .body .input .message
+		.text 
+			width 100%
+			float none !important
+		.from
+			block-relative()
+			float none !important
+			left auto !important
+			right auto !important
+			bottom auto !important
+			width 100%
+			*/
+/*@media all and (min-width: 768px)
+	#chatbox
+		.body .input 
+			.thumb
+				float left
+			.message
+				float right
+*/			
+
+@media all and (max-width: 767px)
+	#chatbox
+		.header
+			.controls
+				button
+					&.min, &.res
+						none()
+		.body
+			.input 
+				.thumb
+					width 20.68%	
+				.message
+					.content
+						padding 9px 9px 4px 7px !important
+					width 75.86%
+					margin-left 3.44%
+					.from
+						position relative !important
+						left auto !important
+						bottom auto !important
+					.text
+						width 100% !important
+						padding-bottom 11px !important
+						float none !important
+					
+				&.client .message
+					margin-left 0
+					margin-right 3.44%
+		
+
+@media all and (min-width: 768px)
+	#chatbox
+		width 600px
+		.body
+			min-height 409px
+			.input 
+				.thumb
+					width 16.14%	
+				.message
+					width 74.73%
+					margin-left 2.8%
+				&.client .message
+					margin-left 0
+					margin-right 2.8%
+		
+
+
+
