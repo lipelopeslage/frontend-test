@@ -1,3 +1,5 @@
+@import 'utils/utils.styl'
+
 #chatbox
 	block-relative()
 	opacity(1)
@@ -42,7 +44,7 @@
 		block-relative()
 		overflow-x hidden
 		overflow-y scroll
-		border-bottom 1px solid #ddd
+		border-bottom 1px solid $msg_gray
 		clear both
 		.history
 			block-relative()
@@ -67,9 +69,9 @@
 						width 100%
 				.message
 					block-relative()
-					set_font(Arial, 16px, 16px, #666, left)
+					set_font(Arial, 16px, 16px, $rock_gray, left)
 					margin-bottom 6px
-					background-color #ddd
+					background-color $msg_gray
 					font-style italic
 					&:before
 						block-absolute()
@@ -83,7 +85,7 @@
 					
 					.from
 						block-absolute()
-						set_font(Arial, 14px, 12px, #666)
+						set_font(Arial, 14px, 12px, $rock_gray)
 						bottom 7px
 						/*.name
 							visibility hidden*/
@@ -121,7 +123,7 @@
 							left -7px
 							border-top 7px solid transparent
 							border-bottom 7px solid transparent
-							border-right 7px solid #ddd
+							border-right 7px solid $msg_gray
 			
 				&.client
 					text-align right
@@ -138,7 +140,7 @@
 							right -7px
 							border-top 7px solid transparent
 							border-bottom 7px solid transparent
-							border-left 7px solid #ddd
+							border-left 7px solid $msg_gray
 						
 					
 	
@@ -151,8 +153,8 @@
 			textarea
 				block-relative()
 				dimensions(auto, 54px, #f1f1f1)
-				set_font(Arial, 14px, auto, #666666)
-				boxshadow(0, 0, 10px, #d5d5d5, true)
+				set_font(Arial, 14px, auto, $rock_gray)
+				boxshadow(0, 0, 10px, $light_gray, true)
 				transition(box-shadow, .15s, linear)
 				padding 7px 10px
 				border 1px solid #dedede
@@ -210,28 +212,6 @@
 		&:focus
 			outline none 0
 
-/*
-@media all and (max-width: 620px)
-	#chatbox .body .input .message
-		.text 
-			width 100%
-			float none !important
-		.from
-			block-relative()
-			float none !important
-			left auto !important
-			right auto !important
-			bottom auto !important
-			width 100%
-			*/
-/*@media all and (min-width: 768px)
-	#chatbox
-		.body .input 
-			.thumb
-				float left
-			.message
-				float right
-*/			
 
 @media all and (max-width: 767px)
 	#chatbox

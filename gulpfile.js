@@ -1,7 +1,13 @@
 var gulp = require('gulp'),
 	stylus = require('gulp-stylus'),
 	watch = require('gulp-watch'),
-	myPaths = {stylus: './assets/stylus/**/*.styl',js: './assets/js/**/*.js'},
+	myPaths = {
+    stylus: {
+      main: './assets/stylus/catho.styl',
+      chat: './assets/stylus/chat.styl'
+    },
+    js: './assets/js/**/*.js'
+  },
   browserify = require('gulp-browserify'),
   concat = require('gulp-concat');
 
@@ -20,15 +26,21 @@ gulp.task('browserify', function() {
 });
  
 gulp.task('stylus', function() {
-  gulp.src(myPaths.stylus)
+  gulp.src(myPaths.stylus.main)
     .pipe(stylus())
     .on('error', theError)
-    .pipe(concat('catho.css'))
+    //.pipe(concat('catho.css'))
+    .pipe(gulp.dest('./public/css'));
+
+  gulp.src(myPaths.stylus.chat)
+    .pipe(stylus())
+    .on('error', theError)
+    //.pipe(concat('catho.css'))
     .pipe(gulp.dest('./public/css'))
 });
 
 gulp.task('watch', function() {
-  gulp.watch(myPaths.stylus, ['stylus']);
+  gulp.watch(myPaths.stylus.main, ['stylus']);
   gulp.watch(myPaths.js, ['browserify']);
 });
 

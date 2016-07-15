@@ -1,9 +1,6 @@
 @import 'utils/reset.styl'
 @import 'utils/utils.styl'
 
-$blue = #005da4
-$sprite = image('sprite.png')
-
 body
 	#chatbox-holder
 		block-absolute()
@@ -51,7 +48,7 @@ body
 				span
 					display inline-block
 					margin 0 10px
-					color #d5d5d5
+					color $light_gray
 					
 				strong
 					relative()
@@ -62,7 +59,6 @@ body
 						top -7px
 						left -66px
 						content ""
-
 
 
 @media all and (max-width: 767px)
@@ -88,4 +84,4 @@ body
 	
 	
 			
-@import 'chat.styl'
+//@import 'chat.styl'
