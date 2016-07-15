@@ -125,7 +125,11 @@ Avaliaremos o resultado seguindo esses pontos:
 ### Considerações do candidato
 Comentários sobre o teste:
 
+- Para rodar a aplicação: npm start
+- Para compilar os scripts e css: gulp (em outra aba do terminal, no diretório raiz)
 - Pensei em usar o react para componentizar o exemplo, mas decidi por utilizar javascript puro para uma melhor avaliação da minha resolução
 - Pensei em tornar o chat uma espécie de biblioteca, por isso separei o arquivo css 'chat.css' do escopo geral
 - Mantendo o pensamento de biblioteca, o único módulo a ser requisitado para a inserção do chat é o próprio 'chat.js'
 - Infelizmente não tive tempo de testar no IE8, pois trabalho com um iMac e um MacbookPro, meu notebook windows não possui node, nem npm instalados (utilizo apenas para recreação)
+- Versão do node: 4.3.0
+- Versão do npm: 2.14.12
