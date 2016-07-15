@@ -117,3 +117,15 @@ Avaliaremos o resultado seguindo esses pontos:
 - Clareza e limpeza do código
 - Semântica HTML
 - Lógica de programação
+
+
+........
+
+
+### Considerações do candidato
+Alguns pontos e rasões para determinadas decisões no teste:
+
+- Pensei em usar o react para componentizar o exemplo, mas decidi por utilizar javascript puro para uma melhor avaliação da minha resolução
+- Pensei em tornar o chat uma espécie de biblioteca, por isso separei o arquivo css 'chat.css' do escopo geral
+- Mantendo o pensamento de biblioteca, o único módulo a ser requisitado para a inserção do chat é o próprio 'chat.js'
+- Infelizmente não tive tempo de testar no IE8, pois trabalho com um iMac e um MacbookPro, meu notebook windows não possui node, nem npm instalados (utilizo apenas para recreação)
