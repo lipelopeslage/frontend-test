@@ -184,10 +184,11 @@ body header .container button {
 }
 body footer {
   display: block;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: auto;
   background: #ebebeb;
+  bottom: 0;
   min-height: 32px;
   padding-bottom: 10px;
 }
@@ -229,8 +230,6 @@ body footer .container .content strong:before {
     position: fixed !important;
     width: 100%;
     height: 100%;
-    top: 0;
-    bottom: auto !important;
     right: 0 !important;
   }
   .container {
@@ -255,6 +254,8 @@ body footer .container .content strong:before {
 #chatbox {
   display: block;
   position: relative;
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   visibility: hidden;
   background-color: #fff;
   box-shadow: 0px 0px 15px #999;
@@ -311,8 +312,11 @@ body footer .container .content strong:before {
 }
 #chatbox .header .controls button.min {
   background-position: -167px -15px;
+  top: -2px;
 }
 #chatbox .header .controls button.res {
+  display: none;
+  top: -1px;
   background-position: -198px -15px;
 }
 #chatbox .header .controls button.cl {
@@ -321,20 +325,30 @@ body footer .container .content strong:before {
 #chatbox .body {
   display: block;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   border-bottom: 1px solid #ddd;
   clear: both;
 }
 #chatbox .body .history {
   display: block;
-  position: absolute;
+  position: relative;
+  -ms-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+  top: 0;
   padding: 15px;
-  left: 0;
-  bottom: 0;
 }
 #chatbox .body .history .input {
   display: block;
   position: relative;
+  -ms-transition: opacity 0.2 linear;
+  -o-transition: opacity 0.2 linear;
+  -webkit-transition: opacity 0.2 linear;
+  -moz-transition: opacity 0.2 linear;
+  transition: opacity 0.2 linear;
   width: 100%;
   margin-top: 16px;
 }
@@ -366,6 +380,7 @@ body footer .container .content strong:before {
   color: #666;
   text-align: left;
   text-transform: none;
+  margin-bottom: 6px;
   background-color: #ddd;
   font-style: italic;
 }
@@ -392,6 +407,8 @@ body footer .container .content strong:before {
   text-align: none;
   text-transform: none;
   bottom: 7px;
+/*.name
+							visibility hidden*/
 }
 #chatbox .body .history .input .message .from .time {
   display: block;
@@ -409,11 +426,14 @@ body footer .container .content strong:before {
 #chatbox .body .history .input .message .status {
   display: block;
   position: absolute;
-  width: 20px;
+  width: 24px;
   height: 20px;
   background: url("../res/img/sprite.png") -290px -16px;
   bottom: 0;
   left: 4px;
+}
+#chatbox .body .history .input .message .status.read {
+  background-position: -263px -16px;
 }
 #chatbox .body .history .input.clerk .thumb {
   float: left;
@@ -425,6 +445,7 @@ body footer .container .content strong:before {
   left: 10px;
 }
 #chatbox .body .history .input.clerk .message .from strong {
+  display: block;
   font-weight: bold;
 }
 #chatbox .body .history .input.clerk .message .text {
@@ -542,16 +563,31 @@ body footer .container .content strong:before {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   visibility: visible;
 }
+#chatbox.disabled .body .history {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  top: 60px;
+}
+#chatbox.disabled .footer form fieldset {
+  opacity: 0.7;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+#chatbox.minimized .header .controls button.min {
+  display: none;
+}
+#chatbox.minimized .header .controls button.res {
+  display: block;
+}
 #chatbox button {
   cursor: pointer;
 }
-#chatbox:focus {
+#chatbox button:focus {
   outline: none 0;
 }
 @media all and (max-width: 767px) {
   #chatbox .header .controls button.min,
   #chatbox .header .controls button.res {
-    display: none;
+    display: none !important;
   }
   #chatbox .body .input .thumb {
     width: 20.68%;
@@ -596,6 +632,10 @@ body footer .container .content strong:before {
     margin-left: 0;
     margin-right: 2.8%;
   }
+  #chatbox.minimized {
+    overflow: hidden;
+    height: 40px;
+  }
 }
 
 #chatbox {
@@ -621,22 +661,24 @@ body footer .container .content strong:before {
 }
 #chatbox .header .controls button.min {
   background-position: -167px -15px;
+  top: -2px;
 }
 #chatbox .header .controls button.res {
+  top: -1px;
   background-position: -198px -15px;
 }
 #chatbox .header .controls button.cl {
   background-position: -231px -17px;
 }
 #chatbox .body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   border-bottom: 1px solid #ddd;
   clear: both;
 }
 #chatbox .body .history {
+  top: 0;
   padding: 15px;
-  left: 0;
-  bottom: 0;
 }
 #chatbox .body .history .input {
   width: 100%;
@@ -653,6 +695,7 @@ body footer .container .content strong:before {
   width: 100%;
 }
 #chatbox .body .history .input .message {
+  margin-bottom: 6px;
   background-color: #ddd;
   font-style: italic;
 }
@@ -665,6 +708,8 @@ body footer .container .content strong:before {
 }
 #chatbox .body .history .input .message .from {
   bottom: 7px;
+/*.name
+							visibility hidden*/
 }
 #chatbox .body .history .input .message .from .time {
   margin-top: 4px;
@@ -678,6 +723,9 @@ body footer .container .content strong:before {
 #chatbox .body .history .input .message .status {
   bottom: 0;
   left: 4px;
+}
+#chatbox .body .history .input .message .status.read {
+  background-position: -263px -16px;
 }
 #chatbox .body .history .input.clerk .thumb {
   float: left;
@@ -764,10 +812,13 @@ body footer .container .content strong:before {
 #chatbox .footer form.writing button {
   visibility: visible;
 }
+#chatbox.disabled .body .history {
+  top: 60px;
+}
 #chatbox button {
   cursor: pointer;
 }
-#chatbox:focus {
+#chatbox button:focus {
   outline: none 0;
 }
 /*
@@ -793,6 +844,10 @@ body footer .container .content strong:before {
 				float right
 */
 @media all and (max-width: 767px) {
+  #chatbox .header .controls button.min,
+  #chatbox .header .controls button.res {
+    display: none !important;
+  }
   #chatbox .body .input .thumb {
     width: 20.68%;
   }
@@ -835,6 +890,10 @@ body footer .container .content strong:before {
   #chatbox .body .input.client .message {
     margin-left: 0;
     margin-right: 2.8%;
+  }
+  #chatbox.minimized {
+    overflow: hidden;
+    height: 40px;
   }
 }
 

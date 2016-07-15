@@ -7,6 +7,11 @@ var express = require("express"),
 global.CONFIG = require("./config");
 require("./routes")(app);
 
+
+app.get("/", function(req, res){
+    res.sendFile(__dirname + "/views/home/chat.html");
+});
+
 app.use(
     "/static",
     express.static(

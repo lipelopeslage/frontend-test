@@ -1,5 +1,6 @@
 #chatbox
 	block-relative()
+	opacity(1)
 	visibility hidden
 	background-color #fff
 	box-shadow 0px 0px 15px #999
@@ -29,23 +30,28 @@
 					opacity(1)
 				&.min
 					background-position -167px -15px
+					top -2px
 				&.res
+					none()
+					top -1px
 					background-position -198px -15px
 				&.cl
 					background-position -231px -17px
 	
 	.body
 		block-relative()
-		overflow hidden
+		overflow-x hidden
+		overflow-y scroll
 		border-bottom 1px solid #ddd
 		clear both
 		.history
-			block-absolute()
+			block-relative()
+			transition(all, .7s, ease-out)
+			top 0
 			padding 15px
-			left 0
-			bottom 0
 			.input
 				block-relative()
+				transition(opacity, .2, linear)
 				width 100%
 				margin-top 16px
 				&:after
@@ -62,6 +68,7 @@
 				.message
 					block-relative()
 					set_font(Arial, 16px, 16px, #666, left)
+					margin-bottom 6px
 					background-color #ddd
 					font-style italic
 					&:before
@@ -78,6 +85,8 @@
 						block-absolute()
 						set_font(Arial, 14px, 12px, #666)
 						bottom 7px
+						/*.name
+							visibility hidden*/
 						.time
 							block-relative()
 							margin-top 4px
@@ -89,9 +98,11 @@
 						width 58.6%
 					.status
 						block-absolute()
-						dimensions(20px, 20px, $sprite -290px -16px)
+						dimensions(24px, 20px, $sprite -290px -16px)
 						bottom 0
 						left 4px
+						&.read
+							background-position -263px -16px
 				&.clerk
 					.thumb
 						float left
@@ -100,6 +111,7 @@
 						.from
 							left 10px
 							strong
+								block()
 								font-weight bold
 						.text
 							float right
@@ -180,11 +192,23 @@
 					block()
 					opacity(1)
 					visibility visible
-
+	&.disabled
+		.body .history
+			opacity(0)
+			top 60px
+		.footer form fieldset
+			opacity(.7)
+	&.minimized
+		.header .controls button
+			&.min
+				none()
+			&.res
+				block()
+			
 	button
 		cursor pointer
-	&:focus
-		outline none 0
+		&:focus
+			outline none 0
 
 /*
 @media all and (max-width: 620px)
@@ -215,7 +239,7 @@
 			.controls
 				button
 					&.min, &.res
-						none()
+						display none !important
 		.body
 			.input 
 				.thumb
@@ -253,6 +277,10 @@
 				&.client .message
 					margin-left 0
 					margin-right 2.8%
+		&.minimized
+			overflow hidden
+			height 40px
+		
 		
 
 
