@@ -123,7 +123,7 @@ Avaliaremos o resultado seguindo esses pontos:
 
 
 ### Considerações do candidato
-Alguns pontos e rasões para determinadas decisões no teste:
+Comentários sobre o teste:
 
 - Pensei em usar o react para componentizar o exemplo, mas decidi por utilizar javascript puro para uma melhor avaliação da minha resolução
 - Pensei em tornar o chat uma espécie de biblioteca, por isso separei o arquivo css 'chat.css' do escopo geral
